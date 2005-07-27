@@ -6,7 +6,7 @@ use HTTP::Request;
 use vars qw(@ISA $VERSION);
 
 @ISA = qw(LWP::UserAgent);
-$VERSION = 0.01;
+$VERSION = 0.02;
 
 use constant SERVER => 'qualysapi.qualys.com';
 use constant API_PATH => '/msp/';
@@ -131,6 +131,7 @@ Again, see the L<http://www.qualys.com/docs/QualysGuard_API_User_Guide.pdf> for 
 functions and attributes that you can use.
 
 =head1 DESCRIPTION
+
 This module is a wrapper for connecting and using the QualysGuard API for all Qualys partners. It
 will take care of authentication and creating the correct uri based on the options provided and
 the selected API script.
