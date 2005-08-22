@@ -9,7 +9,7 @@ my %depends = (LWP::UserAgent => 2,
 
 
 WriteMakefile(
-    ABSTRACT		=> 'connect to the Qualys scanner API',
+    ABSTRACT		=> 'connect to the Qualys scanner API with perl',
     AUTHOR		=> 'Anthony G Persaud (apersaud@gmail.com)',
     clean		=> {FILES => "*.tar *.old pod2htm* *.htm*"},
     NAME		=> 'Qualys',

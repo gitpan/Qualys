@@ -6,7 +6,7 @@ use HTTP::Request;
 use vars qw(@ISA $VERSION);
 
 @ISA = qw(LWP::UserAgent);
-$VERSION = 0.02;
+$VERSION = 0.05;
 
 use constant SERVER => 'qualysapi.qualys.com';
 use constant API_PATH => '/msp/';
@@ -27,11 +27,18 @@ my ($class,$self) = shift;
 #AUTOLOAD will dynamically generate the attribute functions when called
 
 sub AUTOLOAD {
-  my $self = shift;
+
   (my $attr = our $AUTOLOAD) =~ s{^.*::}{};
    warn __PACKAGE__.': ->'.$attr.'() method not defined!' && return unless $attr =~ /[^A-Z]/;  # skip DESTROY and all-cap methods
-   $self->{QUALYS_ATTRIBUTES}{lc $attr} = shift if @_;
-   return $self->{QUALYS_ATTRIBUTES}{lc $attr};
+   
+   *$AUTOLOAD = sub {
+   	my $self = shift;
+   	$self->{QUALYS_ATTRIBUTES}{lc $attr} = shift if(@_);
+        return $self->{QUALYS_ATTRIBUTES}{lc $attr};
+   };
+
+   goto &$AUTOLOAD;
+   
 }
 
 
@@ -99,7 +106,7 @@ __END__
 
 =head1 NAME
 
-Qualys - connect to the Qualys scanner API
+Qualys - connect to the Qualys scanner API with perl
 
 =head1 SYNOPSIS
 

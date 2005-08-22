@@ -1,7 +1,7 @@
-Qualys version 0.01
+Qualys version 0.05
 ===================
 
-Connect to the Qualys scanner API
+Connect to the Qualys scanner API with perl
 
 This module is a wrapper for connecting and using the QualysGuard API for all Qualys partners. It
 will take care of authentication and creating the correct uri based on the options provided and
